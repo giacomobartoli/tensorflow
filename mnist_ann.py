@@ -31,10 +31,16 @@ def neuron_layer(X, n_neurons, name, activation=None):
                 return z
 # !POSSO ANCHE USARE FULLY_CONNECTED() DI DEFAULT, sostituendola con neuron_layer
 # rete neurale: INPUT LAYER -> 2 HIDDEN LAYER -> OUTPUT
+
 with tf.name_scope("dnn"):
     hidden1 = neuron_layer(X, n_hidden1, "hidden1", activation="relu")
     hidden2 = neuron_layer(hidden1, n_hidden2, "hidden2", activation="relu")
     logits = neuron_layer(hidden2, n_outputs, "outputs")
+
+#with tf.name_scope("dnn"):
+#    hidden1 = fully_connected(X, n_hidden1, "hidden1", activation="relu")
+#    hidden2 = fully_connected(hidden1, n_hidden2, "hidden2", activation="relu")
+#    logits = fully_connected(hidden2, n_outputs, "outputs")
 
 #ABBIAMO RETE CON TOPOLOGIA DEEP, manca la funzione di costo.
 #Usiamo cross entropy: penalizza i modelli con bassa probabilità per certe classi
